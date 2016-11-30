@@ -1,0 +1,66 @@
+{
+  "name": "json-schema-flatten",
+  "version": "0.0.1",
+  "description": "flatten JSON schema",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "lint": "eslint src",
+    "lint-staged": "lint-staged"
+  },
+  "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.7.0"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "codecov": "^1.0.1",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "lint-staged": "^3.2.1",
+    "nyc": "^10.0.0",
+    "pre-commit": "^1.1.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base"
+    ],
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": ["src/**/*.spec.js"],
+          "peerDependencies": false
+        }
+      ]
+    }
+  },
+  "ava": {
+    "files": "src/**/*.spec.js",
+    "source": [
+      "src/**/*.js",
+      "!src/**/*.spec.js"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/**/*.spec.js"
+    ],
+    "cache": true,
+    "all": true
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": "eslint"
+  }
+}
