@@ -1,0 +1,7 @@
+{
+  "definitions": {
+    "hoge": {
+      "type": "string"
+    }
+  }
+}
